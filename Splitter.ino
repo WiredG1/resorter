@@ -1,4 +1,5 @@
 unsigned int multibleIndexOf(String str, char c){
+  str += c;
   unsigned int l = str.length();
   unsigned int counter = 0;
   for(unsigned int i = 0; i < l; i++){

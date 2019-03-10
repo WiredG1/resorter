@@ -24,7 +24,7 @@ AccelStepper catcher(AccelStepper::FULL4WIRE, 9, 8, 6, 7);
 AccelStepper wheel(AccelStepper::FULL4WIRE, 11, 10, 13, 12);
 
 void setup() {
-
+  
   Grabber.attach(servoPin);
   // put your setup code here, to run once:
   pinMode(OneKPin,OUTPUT);
@@ -35,22 +35,16 @@ void setup() {
 
   Serial.begin(9600);
   Serial.setTimeout(10);
-  Serial.println("ready()");
+  Serial.println("ready();");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   if(Serial.available()){
     String SerialIn = String(Serial.readStringUntil(';'));
-    while(Serial.available()){
+    /*while(Serial.available()){
       Serial.read();
-    }
-    String temp = SerialIn;
-    temp.trim();
-    temp.toLowerCase();    
-    
-    Serial.println(temp);
-    
+    }*/        
     SerialIn.trim();
     
     String args = SerialIn.substring(SerialIn.indexOf('(')+1,SerialIn.indexOf(')')+1);
@@ -63,7 +57,7 @@ void loop() {
       func = 2;
     } else if(fun == "transporterturn"){
       func = 3;
-    } else if(fun == "ohmArmPosition"){
+    } else if(fun == "ohmarmposition"){
       func = 4;
     } else {
       func = 5;
@@ -77,14 +71,14 @@ void loop() {
    while(catcherRunning){
       catcher.run();
       if(catcher.distanceToGo() == 0){
-        Serial.println("catcherTurn()");
+        Serial.println("catcherTurn();");
         catcherRunning = false;
       }
     }
-    while(wheelRunning){
+    if(wheelRunning){
       wheel.run();
       if(wheel.distanceToGo() == 0){
-        Serial.println("transporterTurn()");
+        Serial.println("transporterTurn();");
         wheelRunning = false;
       }
     }

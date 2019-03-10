@@ -5,7 +5,7 @@ String runFunc(int inputFunc, String args) {
   switch(inputFunc) {
     case 1:
       a = getResistance();
-      returnfunc = "readResistance" + a + ")";
+      returnfunc = "readResistance" + a + ");";
       return(returnfunc);
     case 2:
       Turner(args,&catcher);
@@ -16,7 +16,7 @@ String runFunc(int inputFunc, String args) {
     case 4:
       pos = args.substring(0,args.indexOf(')')).toInt();
       Grabber.write(pos);
-      returnfunc = "ohmArmPosition()";
+      returnfunc = "ohmArmPosition();";
       return(returnfunc);
     case 5:
       return("error(500)");
